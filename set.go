@@ -1,5 +1,9 @@
 package set
 
+func Id[T comparable](x T) T {
+	return x
+}
+
 // A Set implementation. T is the element type, U is the hash type.
 type Set[U comparable, T any] struct {
 	Elems  map[U]T
@@ -17,6 +21,11 @@ func NewSet[U comparable, T any](elems []T, hasher func(T) U) Set[U, T] {
 
 func NewEmptySet[U comparable, T any](hasher func(T) U) Set[U, T] {
 	return NewSet([]T{}, hasher)
+}
+
+// NewSimpleSet creates a new Set where the hash function is the identity function.
+func NewSimpleSet[U comparable]() Set[U, U] {
+	return NewSet([]U{}, Id[U])
 }
 
 func (s Set[U, T]) Len() int {

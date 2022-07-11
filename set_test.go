@@ -22,6 +22,19 @@ func YourHash(y YourElement) string {
 	return y.id
 }
 
+func TestSimpleSet(t *testing.T) {
+	s := NewSimpleSet[string]()
+
+	s.Add("aaa")
+	s.Add("bbb")
+	s.Add("ccc")
+	s.Add("bbb")
+	assert.Equal(t, 3, s.Len())
+	assert.True(t, s.Has("aaa"))
+	assert.True(t, s.Has("bbb"))
+	assert.True(t, s.Has("ccc"))
+}
+
 func TestSetWithPointerType(t *testing.T) {
 	s := NewEmptySet(MyHash)
 
