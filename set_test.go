@@ -23,7 +23,7 @@ func YourHash(y YourElement) string {
 }
 
 func TestSimpleSet(t *testing.T) {
-	s := NewSimpleSet[string]()
+	s := NewSimpleSet([]string{})
 
 	s.Add("aaa")
 	s.Add("bbb")
@@ -33,6 +33,9 @@ func TestSimpleSet(t *testing.T) {
 	assert.True(t, s.Has("aaa"))
 	assert.True(t, s.Has("bbb"))
 	assert.True(t, s.Has("ccc"))
+
+	s2 := NewSimpleSet([]string{"aaa", "bbb", "ccc"})
+	assert.True(t, s.Equal(s2))
 }
 
 func TestSetWithPointerType(t *testing.T) {

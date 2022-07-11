@@ -24,8 +24,8 @@ func NewEmptySet[U comparable, T any](hasher func(T) U) Set[U, T] {
 }
 
 // NewSimpleSet creates a new Set where the hash function is the identity function.
-func NewSimpleSet[U comparable]() Set[U, U] {
-	return NewSet([]U{}, Id[U])
+func NewSimpleSet[U comparable](elems []U) Set[U, U] {
+	return NewSet(elems, Id[U])
 }
 
 func (s Set[U, T]) Len() int {
